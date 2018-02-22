@@ -1,15 +1,15 @@
 class PostsController < ApplicationController
+  before_action :edit_action, only: [:index]
   def index
-    @post=Post.new
     @posts=Post.all
   end
 
   def create
-  	@post=Post.new(post_params)
-  	if @post.save
-      respond_to do |format|
+    @post=Post.new(post_params)
+    if @post.save
+        respond_to do |format|
         format.js
-      end
+    end
     else
       render 'new'
     end
@@ -22,7 +22,7 @@ class PostsController < ApplicationController
   def update
       @post=Post.find(params[:id])
       if @post.update(post_params)
-      redirect_to @post
+      redirect_to root_path
     else
       render 'edit'
     end
@@ -39,6 +39,14 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def edit_action
+    if params[:post_id].present?
+      @post = Post.find(params[:post_id])
+    else
+      @post = Post.new
+    end
+  end
 
   def post_params
   	params.require(:post).permit(:title,:text)
