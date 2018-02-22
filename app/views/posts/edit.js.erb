@@ -1,0 +1,3 @@
+$(".show1<%=@post.id%>").hide();
+$(".delete<%=@post.id%>").hide();
+$("#post<%=@post.id%>").append("<%= j render 'form' %>")

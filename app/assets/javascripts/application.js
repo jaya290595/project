@@ -14,17 +14,6 @@
 //= require turbolinks
 //= require_tree .
 
-$(document).ready(function(){
-  $('.destroy').on('click',function(){
-    if (confirm("Are you sure?")){
-      $.ajax({
-        url: '/posts/'+ this.parentElement.id,
-        type: 'DELETE',
-        success: function(r){
-        }
-      });
-    }
-
-  });
-  
-});
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets

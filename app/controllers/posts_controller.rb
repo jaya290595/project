@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
-  before_action :edit_action, only: [:index]
   def index
-    @posts=Post.all
+    @posts=Post.all.order("created_at DESC")
+    @post= Post.new
   end
 
   def create
@@ -17,17 +17,21 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    
+    respond_to do |format|
+      format.js
+    end
   end
 
   def update
       @post=Post.find(params[:id])
       if @post.update(post_params)
-      redirect_to root_path
-    else
+          respond_to do |format|
+          format.js
+          end
+      else
       render 'edit'
-    end
-
-
+      end
   end
 
   def destroy

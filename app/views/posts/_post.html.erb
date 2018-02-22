@@ -1,13 +1,21 @@
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Text</th>
+<body>
+<hr>           
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Text</th>
+        
   </tr>
-  <tr id='content' >
+      </thead>
+      <tbody>
+  <tr id="post<%=post.id%>" >
     <td><%= post.title %></td>
     <td><%= post.text %></td>
-    <td><%= link_to 'Edit', root_path(:post_id => post.id) %></td>
-    <td><%= link_to "Delete" ,post, confirm: 'Are you sure?', method: :delete, remote: true %></td>
+    <td><%= link_to 'Edit',edit_post_path(post.id),class: "btn btn-success" , remote:true  %></td>
+    <td><%= link_to 'Show',root_path(post.id), class: "btn btn-primary  show1#{post.id}"  %></td>
+    <td><%= link_to "Delete" ,post, confirm: 'Are you sure?', method: :delete, class: "btn btn-danger delete#{post.id}",remote: true %></td>
   </tr>
-
+  </tbody>
 </table>
+</body>
