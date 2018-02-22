@@ -26,12 +26,17 @@ class PostsController < ApplicationController
     else
       render 'edit'
     end
+
+
   end
 
   def destroy
     @post= Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path
+    redirect_to root_path
+    respond_to do |format|
+      format.js
+    end
   end
 
   def show
